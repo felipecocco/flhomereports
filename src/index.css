@@ -1,13 +1,54 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-size: 10pt;
+  font-family: "Libre Franklin", sans-serif;
+}
+h2 {
+  string-set: title content();
+  text-decoration: uppercase;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@media print {
+  .pagedjs_margin-content {
+    white-space: nowrap;
+  }
+  .subjectTitle {
+    page-break-before: always;
+  }
+  .studentContainer:not(:first-of-type) {
+    page-break-before: always;
+  }
+  .studentContainer:not(:last-of-type) {
+    page-break-after: always;
+  }
+  @page {
+    size: A4;
+    @top-left {
+      content: string(title);
+      white-space: nowrap;
+      overflow-x: visible;
+      font-size: 9pt;
+      font-weight: 400;
+      border-bottom: 2pt solid #f54530;
+      vertical-align: bottom;
+    }
+    @top-right {
+      content: "WINTER 2019-20";
+      overflow-x: visible;
+      font-size: 9pt;
+      font-weight: 400;
+      border-bottom: 2pt solid #f54530;
+      vertical-align: bottom;
+    }
+  }
+}
+@media screen {
+  body {
+    background-color: whitesmoke;
+  }
+  .pagedjs_page {
+    background-color: #fdfdfd;
+    margin: 10px auto;
+    flex: none;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+  }
 }
