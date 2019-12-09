@@ -6,6 +6,9 @@ h2 {
   string-set: title content();
   text-decoration: uppercase;
 }
+.explanation {
+  counter-reset: page;
+}
 
 @media print {
   .pagedjs_margin-content {
@@ -22,6 +25,12 @@ h2 {
   }
   @page {
     size: A4;
+    @bottom-center {
+      content: counter(page);
+      border-top: 2pt solid rgba(0, 0, 0, 0.4);
+      vertical-align: top;
+      padding: 5px;
+    }
     @top-left {
       content: string(title);
       white-space: nowrap;
