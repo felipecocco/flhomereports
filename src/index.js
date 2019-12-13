@@ -5,10 +5,9 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 let Student1 = {
-  name: "Camilla Sarraf-Mueller",
+  name: "Tania Miraz",
   grade: "Grade 1",
   absent: 0,
-  tardy: 5,
   teacher: "Melinda Moore",
   reportPeriod: "September 5, 2019 - January 15, 2020",
 
@@ -16,8 +15,8 @@ let Student1 = {
     {
       title: "Behavior and Work Habits",
       blurb: "",
-      winterComments:
-        "Tania needs a bit of work. She plays well with others when she wants but is very particular about who she plays with and whether or not she will participate in group activities. Tania is a fast talker. She can out-talk most of the children in the class and usually does. This makes her popular and unpopular at the same time. We are working on Tania’s listening and sharing skills. She is a quick learner and often is way ahead of the other students in grasping difficult content. We enjoy Tania quite a bit.",
+      winterComments: `<p>Tania needs a bit of work. She plays well with others when she wants but is very particular about who she plays with and whether or not she will participate in group activities. Tania is a fast talker. She can out-talk most of the children in the class and usually does. This makes her popular and unpopular at the same time. We are working on Tania’s listening and sharing skills. She is a quick learner and often is way ahead of the other students in grasping difficult content. We enjoy Tania quite a bit.</p>
+        <p>This is an example of a second paragraph so we can test that it'll render it correctly, since these will be a little bit long, it is using dangerouslySetHTML to render the content</p>`,
       springComments: "",
       checklist: [
         {
@@ -25,28 +24,34 @@ let Student1 = {
           items: [
             {
               description: "Relates well with peers",
-              winter_score: "I",
-              spring_score: "N/A"
+              scale: "checklist",
+
+              winter_score: "U",
+              spring_score: "O"
             },
             {
               description: "Relates well with adults",
-              winter_score: "D",
-              spring_score: ""
+              scale: "checklist",
+              winter_score: "U",
+              spring_score: "R"
             },
             {
               description: "Participates in group activities",
-              winter_score: "D",
-              spring_score: ""
+              scale: "checklist",
+              winter_score: "O",
+              spring_score: "O"
             },
             {
               description: "Demonstrates self-control",
-              winter_score: "D",
-              spring_score: ""
+              scale: "checklist",
+              winter_score: "U",
+              spring_score: "R"
             },
             {
               description: "Observes class routines",
-              winter_score: "D",
-              spring_score: ""
+              scale: "checklist",
+              winter_score: "U",
+              spring_score: "R"
             }
           ]
         },
@@ -55,55 +60,64 @@ let Student1 = {
           items: [
             {
               description: "Works independently and productively",
-              winter_score: "I",
-              spring_score: "N/A"
+              scale: "checklist",
+              winter_score: "U",
+              spring_score: "R"
             },
             {
               description: "Cooperates in small group/partnership work",
-              winter_score: "D",
-              spring_score: ""
+              scale: "checklist",
+              winter_score: "U",
+              spring_score: "R"
             },
             {
               description: "Cooperates in large group work",
-              winter_score: "I",
-              spring_score: "N/A"
+              scale: "checklist",
+              winter_score: "U",
+              spring_score: "R"
             },
             {
-              description: "Is attentive during class instruction",
+              description:
+                "An example of an item that is only evaluated in spring",
+              scale: "checklist",
+              winter_score: "",
+              spring_score: "R"
+            },
+
+            {
+              description:
+                "An example of an item that is only evaluated in winter",
+              scale: "checklist",
               winter_score: "D",
               spring_score: ""
             },
             {
               description:
-                "Participates during class discussion and activities",
-              winter_score: "I",
-              spring_score: "N/A"
+                "An example of an item whose description is extremely long, causing it to bleed into the second line",
+              scale: "checklist",
+              winter_score: "U",
+              spring_score: "C"
+            },
+
+            {
+              description:
+                "An example of a raw score item only evaluted in winter",
+              scale: "percent",
+              winter_score: "80%",
+              spring_score: ""
             },
             {
               description:
-                "Is able to repond to the work and the ideas of others",
-              winter_score: "D",
-              spring_score: ""
+                "An example of a raw score item only evaluated in spring",
+              scale: "percent",
+              winter_score: "",
+              spring_score: "100%"
             },
             {
-              description: "Follows directions",
-              winter_score: "I",
-              spring_score: "N/A"
-            },
-            {
-              description: "Sustains effort",
-              winter_score: "D",
-              spring_score: ""
-            },
-            {
-              description: "Organizes and uses materials well",
-              winter_score: "I",
-              spring_score: "N/A"
-            },
-            {
-              description: "Completes class assignments",
-              winter_score: "D",
-              spring_score: ""
+              description: "An example of a raw score",
+              scale: "percent",
+              winter_score: "50%",
+              spring_score: "82%"
             }
           ]
         }
@@ -124,31 +138,37 @@ let Student1 = {
               description:
                 "Is able to hold a complete thought and put it into written form",
               spring_score: "I",
+              scale: "checklist",
               winter_score: ""
             },
             {
               description: "Can read their own writing",
               spring_score: "I",
+              scale: "checklist",
               winter_score: ""
             },
             {
               description: "Uses writing structure (Beginning, Middle, End)",
               spring_score: "I",
+              scale: "checklist",
               winter_score: ""
             },
             {
               description: "Is wiling to take risks with phonetic spelling",
               spring_score: "I",
+              scale: "checklist",
               winter_score: ""
             },
             {
               description: "Correctly spells practiced sight words",
               spring_score: "I",
+              scale: "checklist",
               winter_score: ""
             },
             {
               description: "Leaves spaced between words",
               spring_score: "I",
+              scale: "checklist",
               winter_score: ""
             }
           ]

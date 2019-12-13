@@ -64,21 +64,40 @@ const App = props => {
         <Fragment>
           <div class="subjectTitle">{subj.title}</div>
           {subj.blurb.length > 0 && <div class="blurb">{subj.blurb}</div>}
+
+          <div>
+            {subj.winterComments.length > 0 && (
+              <div class="comment">
+                <div class="header">WINTER COMMENTS:</div>
+                <div
+                  dangerouslySetInnerHTML={{ __html: subj.winterComments }}
+                ></div>
+              </div>
+            )}
+            {subj.springComments.length > 0 && (
+              <div class="comment">
+                <div class="header">SPRING COMMENTS:</div>
+                <div
+                  dangerouslySetInnerHTML={{ __html: subj.springComments }}
+                ></div>
+              </div>
+            )}
+          </div>
           <div class="descriptors">
             <div>
               <i>Performance Indicators:</i>
             </div>
             <div>
-              <b>N</b> = Not Yet Developed
+              <b>U</b> = Unobserved
             </div>
             <div>
-              <b>D</b> = Developing
+              <b>R</b> = Rarely Observed
             </div>
             <div>
-              <b>I</b> = Independent
+              <b>O</b> = Often Observed
             </div>
             <div>
-              <b>N/A</b> = Not Applicable
+              <b>C</b> = Consistently Observed
             </div>
           </div>
           <table class="checklistOverall">
@@ -124,14 +143,16 @@ const App = props => {
                 </th>
               </tr>
               <tr>
-                <th class="individualCell leftEdge">N</th>
-                <th class="individualCell">D</th>
-                <th class="individualCell">I</th>
-                <th class="individualCell rightEdge">N/A</th>
-                <th class="individualCell leftEdge">N</th>
-                <th class="individualCell">D</th>
-                <th class="individualCell">I</th>
-                <th class="individualCell rightEdge">N/A</th>
+                <th class="individualCell leftEdge">U</th>
+                <th class="individualCell ">R</th>
+
+                <th class="individualCell">O</th>
+                <th class="individualCell rightEdge">C</th>
+                <th class="individualCell leftEdge">U</th>
+                <th class="individualCell ">R</th>
+
+                <th class="individualCell">O</th>
+                <th class="individualCell rightEdge">C</th>
               </tr>
             </thead>
             {subj.checklist.map(category => (
@@ -161,43 +182,67 @@ const App = props => {
                     >
                       {item.description}
                     </th>
-                    {["N", "D", "I", "N/A"].map((score, i) => (
-                      <td
-                        className={`individualCell ${
-                          i == 0 ? "leftEdge" : " "
-                        } ${i == 3 ? "rightEdge" : ""}`}
-                      >
-                        {score == item.winter_score ? "X" : ""}
-                      </td>
-                    ))}
-                    {["N", "D", "I", "N/A"].map((score, i) => (
-                      <td
-                        className={`individualCell ${
-                          i == 0 ? "leftEdge" : " "
-                        } ${i == 3 ? "rightEdge" : ""}`}
-                      >
-                        {score == item.spring_score ? "X" : ""}
-                      </td>
-                    ))}
+                    {item.scale == "percent" && (
+                      <Fragment>
+                        <td
+                          colspan="4"
+                          className={`${
+                            item.winter_score.length == 0 ? "striped" : ""
+                          } individualCell leftEdge rightEdge`}
+                        >
+                          {item.winter_score}
+                        </td>
+                        <td
+                          colspan="4"
+                          class={`${
+                            item.spring_score.length == 0 ? "striped" : ""
+                          } individualCell leftEdge rightEdge`}
+                        >
+                          {item.spring_score}
+                        </td>
+                      </Fragment>
+                    )}
+                    {item.scale == "checklist" && (
+                      <Fragment>
+                        {item.winter_score.length == 0 && (
+                          <td
+                            colspan="4"
+                            className={`striped individualCell leftEdge rightEdge `}
+                          />
+                        )}
+                        {item.winter_score.length > 0 &&
+                          ["U", "R", "O", "C"].map((score, i) => (
+                            <td
+                              className={`individualCell ${
+                                i == 0 ? "leftEdge" : " "
+                              } ${i == 3 ? "rightEdge" : ""}`}
+                            >
+                              {score == item.winter_score ? "X" : ""}
+                            </td>
+                          ))}
+                        {item.spring_score.length == 0 && (
+                          <td
+                            colspan="4"
+                            className={`striped individualCell leftEdge rightEdge `}
+                          />
+                        )}
+                        {item.spring_score.length > 0 &&
+                          ["U", "R", "O", "C"].map((score, i) => (
+                            <td
+                              className={`individualCell ${
+                                i == 0 ? "leftEdge" : " "
+                              } ${i == 3 ? "rightEdge" : ""}`}
+                            >
+                              {score == item.spring_score ? "X" : ""}
+                            </td>
+                          ))}
+                      </Fragment>
+                    )}
                   </tr>
                 ))}
               </Fragment>
             ))}
           </table>
-          <div>
-            {subj.winterComments.length > 0 && (
-              <div class="comment">
-                <div class="header">WINTER COMMENTS:</div>
-                <div>{subj.winterComments}</div>
-              </div>
-            )}
-            {subj.springComments.length > 0 && (
-              <div class="comment">
-                <div class="header">SPRING COMMENTS:</div>
-                <div>{subj.springComments}</div>
-              </div>
-            )}
-          </div>
         </Fragment>
       ))}
 
