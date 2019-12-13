@@ -2,9 +2,15 @@ body {
   font-size: 10pt;
   font-family: "Libre Franklin", sans-serif;
 }
-h2 {
-  string-set: title content();
+.upperLeftMargin {
+  string-set: upperLeft content();
   text-decoration: uppercase;
+  display: none;
+}
+.upperRightMargin {
+  string-set: upperRight content();
+  text-decoration: uppercase;
+  display: none;
 }
 .explanation {
   counter-reset: page;
@@ -16,6 +22,9 @@ h2 {
   }
   .subjectTitle {
     page-break-before: always;
+  }
+  .studentContainer {
+    margin-top: 0.25in !important;
   }
   .studentContainer:not(:first-of-type) {
     page-break-before: always;
@@ -32,7 +41,8 @@ h2 {
       padding: 5px;
     }
     @top-left {
-      content: string(title);
+      content: string(upperLeft);
+
       white-space: nowrap;
       overflow-x: visible;
       font-size: 9pt;
@@ -40,8 +50,9 @@ h2 {
       border-bottom: 2pt solid #f54530;
       vertical-align: bottom;
     }
+
     @top-right {
-      content: "WINTER 2019-20";
+      content: "WINTER 2019-2020";
       overflow-x: visible;
       font-size: 9pt;
       font-weight: 400;

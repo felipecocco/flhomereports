@@ -9,7 +9,8 @@ let Student1 = {
   grade: "Grade 1",
   absent: 0,
   teacher: "Melinda Moore",
-  reportPeriod: "September 5, 2019 - January 15, 2020",
+  reportPeriod: "WINTER 2019-2020",
+  reportPeriodDates: "September 5, 2019 - January 15, 2020",
 
   subjects: [
     {
@@ -112,6 +113,66 @@ let Student1 = {
               scale: "percent",
               winter_score: "",
               spring_score: "100%"
+            },
+            {
+              description: "An example of a raw score",
+              scale: "percent",
+              winter_score: "50%",
+              spring_score: "82%"
+            },
+            {
+              description: "An example of a raw score",
+              scale: "percent",
+              winter_score: "50%",
+              spring_score: "82%"
+            },
+            {
+              description: "An example of a raw score",
+              scale: "percent",
+              winter_score: "50%",
+              spring_score: "82%"
+            },
+            {
+              description: "An example of a raw score",
+              scale: "percent",
+              winter_score: "50%",
+              spring_score: "82%"
+            },
+            {
+              description: "An example of a raw score",
+              scale: "percent",
+              winter_score: "50%",
+              spring_score: "82%"
+            },
+            {
+              description: "An example of a raw score",
+              scale: "percent",
+              winter_score: "50%",
+              spring_score: "82%"
+            },
+            {
+              description: "An example of a raw score",
+              scale: "percent",
+              winter_score: "50%",
+              spring_score: "82%"
+            },
+            {
+              description: "An example of a raw score",
+              scale: "percent",
+              winter_score: "50%",
+              spring_score: "82%"
+            },
+            {
+              description: "An example of a raw score",
+              scale: "percent",
+              winter_score: "50%",
+              spring_score: "82%"
+            },
+            {
+              description: "An example of a raw score",
+              scale: "percent",
+              winter_score: "50%",
+              spring_score: "82%"
             },
             {
               description: "An example of a raw score",

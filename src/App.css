@@ -6,7 +6,6 @@
   text-align: center;
 }
 .subjectTitle {
-  margin-top: 0.5in;
   text-transform: uppercase;
   width: 100%;
   background-color: black;
@@ -82,8 +81,11 @@
   background: repeating-linear-gradient(
     -55deg,
     black,
-    black 1px,
-    white 1px,
-    white 2px
+    black 2px,
+    white 2px,
+    white 4px
   );
+}
+tr {
+  page-break-inside: avoid;
 }

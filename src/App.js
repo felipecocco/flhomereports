@@ -15,11 +15,7 @@ const App = props => {
         <div>Teacher: {student.teacher}</div>
       </div>
       <div class="studentDetails">
-        <div>
-          Days Absent: {student.absent}
-          <br></br>
-          Days Tardy: {student.tardy}
-        </div>
+        <div>Days Absent: {student.absent}</div>
         <div>Report Period: {student.reportPeriod}</div>
       </div>
       <div class="explanation">
@@ -57,9 +53,8 @@ const App = props => {
           <b>N/A</b> - Skills of concepts not applicable to this marking period.
         </p>
       </div>
-      <h2
-        style={{ display: "none" }}
-      >{`${student.name.toUpperCase()} - ${student.grade.toUpperCase()}`}</h2>
+      <div className="upperLeftMargin">{`${student.name.toUpperCase()} - ${student.grade.toUpperCase()}`}</div>
+      <div className="upperRightMargin">{`${student.name.toUpperCase()} - ${student.grade.toUpperCase()}`}</div>
       {student.subjects.map(subj => (
         <Fragment>
           <div class="subjectTitle">{subj.title}</div>
