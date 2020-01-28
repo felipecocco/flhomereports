@@ -3,14 +3,17 @@ import logo from "./logo.svg";
 import "./App.css";
 import { findByLabelText } from "@testing-library/dom";
 let stuff = new Array();
-const SHOW_SPRING_SEMESTER = true;
+const SHOW_SPRING_SEMESTER = "spring";
 const App = props => {
   let student = props.student;
   return (
     <div class="studentContainer">
       <div class="studentDetails">
         <div>
-          Student: <b>{student.name}</b>
+          Student:{" "}
+          <b>
+            {student.first_name} {student.last_name}
+          </b>
         </div>
         <div>Teacher: {student.hr_teacher}</div>
       </div>
@@ -55,8 +58,8 @@ const App = props => {
           <b>N/A</b> - Skills of concepts not applicable to this marking period.
         </p>
       </div>
-      <div className="upperLeftMargin">{`${student.name.toUpperCase()} - GRADE ${student.grade_level_current.toUpperCase()}`}</div>
-      <div className="upperRightMargin">{`${student.name.toUpperCase()} - GRADE ${student.grade_level_current.toUpperCase()}`}</div>
+      <div className="upperLeftMargin">{`${student.first_name.toUpperCase()} ${student.last_name.toUpperCase()} - GRADE ${student.grade_level_current.toUpperCase()}`}</div>
+      <div className="upperRightMargin">{`${student.first_name.toUpperCase()} ${student.last_name.toUpperCase()} - GRADE ${student.grade_level_current.toUpperCase()}`}</div>
       {student.departments[0].courses.map(subj => (
         <Fragment>
           <div class="subjectTitle">{subj.course_name}</div>

@@ -5,7 +5,8 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 let Student1 = {
-  name: "Tania Miraz",
+  first_name: "Tania",
+  last_name: "Miraz",
   grade_level_current: "1",
   absent: 0,
   hr_teacher: "Melinda Moore",
@@ -42,6 +43,7 @@ let Student1 = {
             {
               standard_name: "Participates in group activities",
               standard_level: "is_leaf",
+
               scale: "checklist",
               standard_value: "O",
               spring_score: "O"
