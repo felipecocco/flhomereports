@@ -3,7 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { findByLabelText } from "@testing-library/dom";
 let stuff = new Array();
-
+const SHOW_SPRING_SEMESTER = false;
 const App = props => {
   let student = props.student;
   return (
@@ -12,11 +12,13 @@ const App = props => {
         <div>
           Student: <b>{student.name}</b>
         </div>
-        <div>Teacher: {student.teacher}</div>
+        <div>Teacher: {student.hr_teacher}</div>
       </div>
       <div class="studentDetails">
         <div>Days Absent: {student.absent}</div>
-        <div>Report Period: {student.reportPeriod}</div>
+        <div>
+          Report Period: {student.att_from} - {student.att_to}
+        </div>
       </div>
       <div class="explanation">
         <p>
@@ -53,12 +55,14 @@ const App = props => {
           <b>N/A</b> - Skills of concepts not applicable to this marking period.
         </p>
       </div>
-      <div className="upperLeftMargin">{`${student.name.toUpperCase()} - ${student.grade.toUpperCase()}`}</div>
-      <div className="upperRightMargin">{`${student.name.toUpperCase()} - ${student.grade.toUpperCase()}`}</div>
-      {student.subjects.map(subj => (
+      <div className="upperLeftMargin">{`${student.name.toUpperCase()} - GRADE ${student.grade_level_current.toUpperCase()}`}</div>
+      <div className="upperRightMargin">{`${student.name.toUpperCase()} - GRADE ${student.grade_level_current.toUpperCase()}`}</div>
+      {student.departments[0].courses.map(subj => (
         <Fragment>
-          <div class="subjectTitle">{subj.title}</div>
-          {subj.blurb.length > 0 && <div class="blurb">{subj.blurb}</div>}
+          <div class="subjectTitle">{subj.course_name}</div>
+          {subj.curriculum_blurb.length > 0 && (
+            <div class="blurb">{subj.curriculum_blurb}</div>
+          )}
 
           <div>
             {subj.winterComments.length > 0 && (
@@ -98,7 +102,11 @@ const App = props => {
           <table class="checklistOverall">
             <col style={{ width: "55%" }} />
             <colgroup span="4"></colgroup>
-            <colgroup span="4"></colgroup>
+            {SHOW_SPRING_SEMESTER && (
+              <Fragment>
+                <colgroup span="4"></colgroup>
+              </Fragment>
+            )}
             <thead>
               <tr>
                 <td rowspan="2" style={{ width: "55%" }}></td>
@@ -119,53 +127,66 @@ const App = props => {
                 >
                   WINTER
                 </th>
-                <th
-                  colspan="4"
-                  scope="colgroup"
-                  style={{
-                    marginTop: "20px",
-                    width: "20%",
-                    color: "white",
-                    fontWeight: "400",
-                    backgroundColor: "#f54530",
-                    padding: "5px",
-                    borderLeft: "4px solid black",
-                    borderRight: "4px solid black",
-                    borderTop: "2px solid black"
-                  }}
-                >
-                  SPRING
-                </th>
+                {SHOW_SPRING_SEMESTER && (
+                  <th
+                    colspan="4"
+                    scope="colgroup"
+                    style={{
+                      marginTop: "20px",
+                      width: "20%",
+                      color: "white",
+                      fontWeight: "400",
+                      backgroundColor: "#f54530",
+                      padding: "5px",
+                      borderLeft: "4px solid black",
+                      borderRight: "4px solid black",
+                      borderTop: "2px solid black"
+                    }}
+                  >
+                    SPRING
+                  </th>
+                )}
               </tr>
               <tr>
-                <th class="individualCell leftEdge">U</th>
-                <th class="individualCell ">R</th>
+                <th class="individualCell leftEdge">R</th>
+                <th class="individualCell ">O</th>
 
-                <th class="individualCell">O</th>
+                <th class="individualCell">U</th>
                 <th class="individualCell rightEdge">C</th>
-                <th class="individualCell leftEdge">U</th>
-                <th class="individualCell ">R</th>
-
-                <th class="individualCell">O</th>
-                <th class="individualCell rightEdge">C</th>
+                {SHOW_SPRING_SEMESTER && (
+                  <Fragment>
+                    {" "}
+                    <th class="individualCell leftEdge">R</th>
+                    <th class="individualCell ">O</th>
+                    <th class="individualCell">U</th>
+                    <th class="individualCell rightEdge">C</th>
+                  </Fragment>
+                )}
               </tr>
             </thead>
-            {subj.checklist.map(category => (
+            {subj.standards.map(item => (
               <Fragment>
-                <tr class="checklistCategory ">
-                  <th class="checklistDescriptors heading" scope="row">
-                    {category.name}
-                  </th>
-                  <td style={{ borderLeft: "4px solid black" }}></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td style={{ borderLeft: "4px solid black" }}></td>
-                  <td></td>
-                  <td></td>
-                  <td style={{ borderRight: "4px solid black" }}></td>
-                </tr>
-                {category.items.map(item => (
+                {item.standard_level == "is_header" && (
+                  <tr class="checklistCategory ">
+                    <th class="checklistDescriptors heading" scope="row">
+                      {item.standard_name}
+                    </th>
+                    <td style={{ borderLeft: "4px solid black" }}></td>
+                    <td></td>
+                    <td></td>
+                    <td style={{ borderRight: "4px solid black" }}></td>
+                    {SHOW_SPRING_SEMESTER && (
+                      <Fragment>
+                        {" "}
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style={{ borderRight: "4px solid black" }}></td>
+                      </Fragment>
+                    )}
+                  </tr>
+                )}
+                {item.standard_level == "is_leaf" && (
                   <tr class="checklistDescriptors">
                     <th
                       scope="row"
@@ -175,66 +196,75 @@ const App = props => {
                         padding: "5px"
                       }}
                     >
-                      {item.description}
+                      {item.standard_name}
                     </th>
                     {item.scale == "percent" && (
                       <Fragment>
                         <td
                           colspan="4"
                           className={`${
-                            item.winter_score.length == 0 ? "striped" : ""
+                            item.standard_value.length == 0 ? "striped" : ""
                           } individualCell leftEdge rightEdge`}
                         >
-                          {item.winter_score}
+                          {item.standard_value}
                         </td>
-                        <td
-                          colspan="4"
-                          class={`${
-                            item.spring_score.length == 0 ? "striped" : ""
-                          } individualCell leftEdge rightEdge`}
-                        >
-                          {item.spring_score}
-                        </td>
+                        {SHOW_SPRING_SEMESTER && (
+                          <Fragment>
+                            <td
+                              colspan="4"
+                              class={`${
+                                item.spring_score.length == 0 ? "striped" : ""
+                              } individualCell leftEdge rightEdge`}
+                            >
+                              {item.spring_score}
+                            </td>
+                          </Fragment>
+                        )}
                       </Fragment>
                     )}
                     {item.scale == "checklist" && (
                       <Fragment>
-                        {item.winter_score.length == 0 && (
+                        {item.standard_value.length == 0 && (
                           <td
                             colspan="4"
                             className={`striped individualCell leftEdge rightEdge `}
                           />
                         )}
-                        {item.winter_score.length > 0 &&
-                          ["U", "R", "O", "C"].map((score, i) => (
+                        {item.standard_value.length > 0 &&
+                          ["R", "O", "U", "C"].map((score, i) => (
                             <td
                               className={`individualCell ${
                                 i == 0 ? "leftEdge" : " "
                               } ${i == 3 ? "rightEdge" : ""}`}
                             >
-                              {score == item.winter_score ? "X" : ""}
+                              {score == item.standard_value ? "X" : ""}
                             </td>
                           ))}
-                        {item.spring_score.length == 0 && (
-                          <td
-                            colspan="4"
-                            className={`striped individualCell leftEdge rightEdge `}
-                          />
+                        {SHOW_SPRING_SEMESTER && (
+                          <Fragment>
+                            {" "}
+                            {item.spring_score.length == 0 && (
+                              <td
+                                colspan="4"
+                                className={`striped individualCell leftEdge rightEdge `}
+                              />
+                            )}
+                            {item.spring_score.length > 0 &&
+                              ["R", "O", "U", "C"].map((score, i) => (
+                                <td
+                                  className={`individualCell ${
+                                    i == 0 ? "leftEdge" : " "
+                                  } ${i == 3 ? "rightEdge" : ""}`}
+                                >
+                                  {score == item.spring_score ? "X" : ""}
+                                </td>
+                              ))}{" "}
+                          </Fragment>
                         )}
-                        {item.spring_score.length > 0 &&
-                          ["U", "R", "O", "C"].map((score, i) => (
-                            <td
-                              className={`individualCell ${
-                                i == 0 ? "leftEdge" : " "
-                              } ${i == 3 ? "rightEdge" : ""}`}
-                            >
-                              {score == item.spring_score ? "X" : ""}
-                            </td>
-                          ))}
                       </Fragment>
                     )}
                   </tr>
-                ))}
+                )}
               </Fragment>
             ))}
           </table>
