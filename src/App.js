@@ -3,7 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { findByLabelText } from "@testing-library/dom";
 let stuff = new Array();
-const SHOW_SPRING_SEMESTER = false;
+const SHOW_SPRING_SEMESTER = true;
 const App = props => {
   let student = props.student;
   return (
@@ -87,13 +87,13 @@ const App = props => {
               <i>Performance Indicators:</i>
             </div>
             <div>
-              <b>U</b> = Unobserved
-            </div>
-            <div>
               <b>R</b> = Rarely Observed
             </div>
             <div>
-              <b>O</b> = Often Observed
+              <b>O</b> = Occasionally Observed
+            </div>
+            <div>
+              <b>U</b> = Usually Observed
             </div>
             <div>
               <b>C</b> = Consistently Observed
