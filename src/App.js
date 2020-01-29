@@ -3,7 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { findByLabelText } from "@testing-library/dom";
 let stuff = new Array();
-const SHOW_SPRING_SEMESTER = "spring";
+const SHOW_SPRING_SEMESTER = false;
 const App = props => {
   let student = props.student;
   return (
@@ -60,7 +60,7 @@ const App = props => {
       </div>
       <div className="upperLeftMargin">{`${student.first_name.toUpperCase()} ${student.last_name.toUpperCase()} - GRADE ${student.grade_level_current.toUpperCase()}`}</div>
       <div className="upperRightMargin">{`${student.first_name.toUpperCase()} ${student.last_name.toUpperCase()} - GRADE ${student.grade_level_current.toUpperCase()}`}</div>
-      {student.departments[0].courses.map(subj => (
+      {student.departments.courses.map(subj => (
         <Fragment>
           <div class="subjectTitle">{subj.course_name}</div>
           {subj.curriculum_blurb.length > 0 && (
@@ -68,19 +68,11 @@ const App = props => {
           )}
 
           <div>
-            {subj.winterComments.length > 0 && (
+            {subj.comment.length > 0 && (
               <div class="comment">
-                <div class="header">WINTER COMMENTS:</div>
+                <div class="header">COMMENTS:</div>
                 <div
                   dangerouslySetInnerHTML={{ __html: subj.winterComments }}
-                ></div>
-              </div>
-            )}
-            {subj.springComments.length > 0 && (
-              <div class="comment">
-                <div class="header">SPRING COMMENTS:</div>
-                <div
-                  dangerouslySetInnerHTML={{ __html: subj.springComments }}
                 ></div>
               </div>
             )}
