@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { findByLabelText } from "@testing-library/dom";
@@ -61,7 +61,7 @@ const App = props => {
       <div className="upperLeftMargin">{`${student.first_name.toUpperCase()} ${student.last_name.toUpperCase()} - GRADE ${student.grade_level_current.toUpperCase()}`}</div>
       <div className="upperRightMargin">{`${student.first_name.toUpperCase()} ${student.last_name.toUpperCase()} - GRADE ${student.grade_level_current.toUpperCase()}`}</div>
       {student.departments.courses.map(subj => (
-        <Fragment>
+        <React.Fragment>
           <div class="subjectTitle">{subj.course_name}</div>
           {subj.curriculum_blurb.length > 0 && (
             <div class="blurb">{subj.curriculum_blurb}</div>
@@ -98,9 +98,9 @@ const App = props => {
             <col style={{ width: "55%" }} />
             <colgroup span="4"></colgroup>
             {SHOW_SPRING_SEMESTER && (
-              <Fragment>
+              <React.Fragment>
                 <colgroup span="4"></colgroup>
-              </Fragment>
+              </React.Fragment>
             )}
             <thead>
               <tr>
@@ -149,18 +149,18 @@ const App = props => {
                 <th class="individualCell">U</th>
                 <th class="individualCell rightEdge">C</th>
                 {SHOW_SPRING_SEMESTER && (
-                  <Fragment>
+                  <React.Fragment>
                     {" "}
                     <th class="individualCell leftEdge">R</th>
                     <th class="individualCell ">O</th>
                     <th class="individualCell">U</th>
                     <th class="individualCell rightEdge">C</th>
-                  </Fragment>
+                  </React.Fragment>
                 )}
               </tr>
             </thead>
             {subj.standards.map(item => (
-              <Fragment>
+              <React.Fragment>
                 {item.standard_level == "is_header" && (
                   <tr class="checklistCategory ">
                     <th class="checklistDescriptors heading" scope="row">
@@ -171,13 +171,13 @@ const App = props => {
                     <td></td>
                     <td style={{ borderRight: "4px solid black" }}></td>
                     {SHOW_SPRING_SEMESTER && (
-                      <Fragment>
+                      <React.Fragment>
                         {" "}
                         <td></td>
                         <td></td>
                         <td></td>
                         <td style={{ borderRight: "4px solid black" }}></td>
-                      </Fragment>
+                      </React.Fragment>
                     )}
                   </tr>
                 )}
@@ -193,8 +193,8 @@ const App = props => {
                     >
                       {item.standard_name}
                     </th>
-                    {item.scale == "percent" && (
-                      <Fragment>
+                    {item.standard_gradescale == "0 - 100" && (
+                      <React.Fragment>
                         <td
                           colspan="4"
                           className={`${
@@ -204,7 +204,7 @@ const App = props => {
                           {item.standard_value}
                         </td>
                         {SHOW_SPRING_SEMESTER && (
-                          <Fragment>
+                          <React.Fragment>
                             <td
                               colspan="4"
                               class={`${
@@ -213,12 +213,12 @@ const App = props => {
                             >
                               {item.spring_score}
                             </td>
-                          </Fragment>
+                          </React.Fragment>
                         )}
-                      </Fragment>
+                      </React.Fragment>
                     )}
-                    {item.scale == "checklist" && (
-                      <Fragment>
+                    {item.standard_gradescale == "R, O, U, C, n/a" && (
+                      <React.Fragment>
                         {item.standard_value.length == 0 && (
                           <td
                             colspan="4"
@@ -236,7 +236,7 @@ const App = props => {
                             </td>
                           ))}
                         {SHOW_SPRING_SEMESTER && (
-                          <Fragment>
+                          <React.Fragment>
                             {" "}
                             {item.spring_score.length == 0 && (
                               <td
@@ -254,16 +254,16 @@ const App = props => {
                                   {score == item.spring_score ? "X" : ""}
                                 </td>
                               ))}{" "}
-                          </Fragment>
+                          </React.Fragment>
                         )}
-                      </Fragment>
+                      </React.Fragment>
                     )}
                   </tr>
                 )}
-              </Fragment>
+              </React.Fragment>
             ))}
           </table>
-        </Fragment>
+        </React.Fragment>
       ))}
 
       <div class="end"></div>
