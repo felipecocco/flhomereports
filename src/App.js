@@ -164,7 +164,9 @@ const App = props => {
                 {item.standard_level == "is_header" && (
                   <tr class="checklistCategory ">
                     <th class="checklistDescriptors heading" scope="row">
-                      {item.standard_name}
+                      <div
+                        dangerouslySetInnerHTML={{ __html: item.standard_name }}
+                      ></div>
                     </th>
                     <td style={{ borderLeft: "4px solid black" }}></td>
                     <td></td>
