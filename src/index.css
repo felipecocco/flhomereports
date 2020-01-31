@@ -25,6 +25,7 @@ body {
   }
   .studentContainer {
     margin-top: 0.25in !important;
+    min-height: 900px !important;
   }
   .studentContainer:not(:first-of-type) {
     page-break-before: always;

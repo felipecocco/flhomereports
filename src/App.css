@@ -26,7 +26,6 @@
   margin-top: 20px;
   border-collapse: collapse;
   width: 100%;
-  table-layout: fixed;
 }
 .checklistCategory {
   text-transform: uppercase;
@@ -87,5 +86,8 @@
   );
 }
 tr {
+  page-break-inside: avoid;
+}
+th {
   page-break-inside: avoid;
 }

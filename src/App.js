@@ -163,11 +163,11 @@ const App = props => {
               <React.Fragment>
                 {item.standard_level == "is_header" && (
                   <tr class="checklistCategory ">
-                    <th class="checklistDescriptors heading" scope="row">
-                      <div
-                        dangerouslySetInnerHTML={{ __html: item.standard_name }}
-                      ></div>
-                    </th>
+                    <th
+                      class="checklistDescriptors heading"
+                      scope="row"
+                      dangerouslySetInnerHTML={{ __html: item.standard_name }}
+                    ></th>
                     <td style={{ borderLeft: "4px solid black" }}></td>
                     <td></td>
                     <td></td>
@@ -192,9 +192,8 @@ const App = props => {
                         fontWeight: "100",
                         padding: "5px"
                       }}
-                    >
-                      {item.standard_name}
-                    </th>
+                      dangerouslySetInnerHTML={{ __html: item.standard_name }}
+                    ></th>
                     {item.standard_gradescale == "0 - 100" && (
                       <React.Fragment>
                         <td
