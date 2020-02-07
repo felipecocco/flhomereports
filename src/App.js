@@ -64,16 +64,22 @@ const App = props => {
         <React.Fragment>
           <div class="subjectTitle">{subj.course_name}</div>
           {subj.curriculum_blurb.length > 0 && (
-            <div class="blurb">{subj.curriculum_blurb}</div>
+            <div class="blurb">
+              {subj.curriculum_blurb.split("\n").map((item, i) => {
+                return <p key={i} dangerouslySetInnerHTML={{ __html: item }} />;
+              })}
+            </div>
           )}
 
           <div>
             {subj.comment.length > 0 && (
               <div class="comment">
                 <div class="header">COMMENTS:</div>
-                <div
-                  dangerouslySetInnerHTML={{ __html: subj.winterComments }}
-                ></div>
+                {subj.comment.split("\n").map((item, i) => {
+                  return (
+                    <p key={i} dangerouslySetInnerHTML={{ __html: item }} />
+                  );
+                })}
               </div>
             )}
           </div>
