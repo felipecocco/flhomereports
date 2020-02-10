@@ -15,27 +15,27 @@ const App = props => {
             {student.first_name} {student.last_name}
           </b>
         </div>
-        <div>Teacher: {student.hr_teacher}</div>
+        <div>
+          Teacher: <b>{student.hr_teacher}</b>
+        </div>
       </div>
       <div class="studentDetails">
         <div>Days Absent: {student.att_absent}</div>
         <div>
-          Report Period: {student.att_from} - {student.att_to}
+          Report Period:{" "}
+          <b>
+            {student.att_from} - {student.att_to}
+          </b>
         </div>
       </div>
       <div class="explanation">
         <p>Dear Families,</p>
         <p>
-          We write this Home Report as a summary of the first semester, from
-          September to the first weeks of January. It covers Social-Emotional
-          Development, Approach to Learning, Language Arts (Reading & Writing),
-          Mathematics, Core Curriculum (Units of Study in K-2), Social Studies
-          (3-5), and Science (3-5). Your child’s team of teachers worked on this
-          report collectively and it serves as one piece of our communication
-          around your child’s education. This report complements the many ways
-          we recognize and celebrate your child’s progress, such as
-          parent-teacher conferences, end of unit culminating activities, and
-          parent communications.
+          Your child’s team of teachers worked on this report collectively and
+          it serves as one piece of our communication around your child’s
+          education. This report complements the many ways we recognize and
+          celebrate your child’s progress, such as parent-teacher conferences,
+          end of unit culminating activities, and parent communications.
         </p>
         <p>
           We have designed student checklist items that thoroughly cover the
@@ -94,6 +94,7 @@ const App = props => {
         </p>
         <p>
           All the best,
+          <br />
           <br />
           Joe
         </p>
@@ -259,7 +260,8 @@ const App = props => {
                                 item.standard_value.length == 0 ? "striped" : ""
                               } individualCell leftEdge rightEdge`}
                             >
-                              {item.standard_value}{item.standard_value.length > 0 && '%'}
+                              {item.standard_value}
+                              {item.standard_value.length > 0 && "%"}
                             </td>
                             {SHOW_SPRING_SEMESTER && (
                               <React.Fragment>
