@@ -259,7 +259,7 @@ const App = props => {
                                 item.standard_value.length == 0 ? "striped" : ""
                               } individualCell leftEdge rightEdge`}
                             >
-                              {item.standard_value}
+                              {item.standard_value}{item.standard_value.length > 0 && '%'}
                             </td>
                             {SHOW_SPRING_SEMESTER && (
                               <React.Fragment>
@@ -279,16 +279,19 @@ const App = props => {
                         )}
                         {item.standard_gradescale == "R, O, U, C, n/a" && (
                           <React.Fragment>
-                            {item.standard_value.length == 0 && (
+                            {item.standard_value == "N/A" && (
                               <td
                                 colspan="4"
                                 className={`striped individualCell leftEdge rightEdge `}
                               />
                             )}
-                            {item.standard_value.length > 0 &&
+
+                            {item.standard_value !== "N/A" &&
                               ["R", "O", "U", "C"].map((score, i) => (
                                 <td
-                                  className={`individualCell ${
+                                  className={`${
+                                    score == "N/A" ? "striped" : ""
+                                  } individualCell ${
                                     i == 0 ? "leftEdge" : " "
                                   } ${i == 3 ? "rightEdge" : ""}`}
                                 >
@@ -298,16 +301,18 @@ const App = props => {
                             {SHOW_SPRING_SEMESTER && (
                               <React.Fragment>
                                 {" "}
-                                {item.spring_score.length == 0 && (
+                                {item.spring_score == "N/A" && (
                                   <td
                                     colspan="4"
-                                    className={`striped individualCell leftEdge rightEdge `}
+                                    className={` striped individualCell leftEdge rightEdge `}
                                   />
                                 )}
-                                {item.spring_score.length > 0 &&
+                                {item.standard_value !== "N/A" &&
                                   ["R", "O", "U", "C"].map((score, i) => (
                                     <td
-                                      className={`individualCell ${
+                                      className={`${
+                                        score == "N/A" ? "striped" : ""
+                                      } individualCell ${
                                         i == 0 ? "leftEdge" : " "
                                       } ${i == 3 ? "rightEdge" : ""}`}
                                     >

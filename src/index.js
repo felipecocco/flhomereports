@@ -25,13 +25,13 @@ let FinalObj = [
           "standards": [
             {
               "standard_name": "Shows an awareness of and respect for personal space (themselves and others)",
-              "standard_value": "",
+              "standard_value": "C",
               "standard_gradescale": "R, O, U, C, n/a",
               "standard_level": "is_leaf"
             },
             {
               "standard_name": "Demonstrates self-control in structured situations",
-              "standard_value": "",
+              "standard_value": "N/A",
               "standard_gradescale": "R, O, U, C, n/a",
               "standard_level": "is_leaf"
             },
@@ -568,7 +568,7 @@ let FinalObj = [
             },
             {
               "standard_name": "Score on Early Fall Math Fact Fluency Assessment",
-              "standard_value": "",
+              "standard_value": "85",
               "standard_gradescale": "0 - 100",
               "standard_level": "is_leaf"
             },
