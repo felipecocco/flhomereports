@@ -22,6 +22,7 @@ body {
   }
   .subjectTitle {
     page-break-before: always;
+    /* margin-top: 20px; */
   }
   .studentContainer {
     margin-top: 0.25in !important;
