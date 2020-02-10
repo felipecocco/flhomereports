@@ -16,7 +16,7 @@ const App = props => {
           </b>
         </div>
         <div>
-          Teacher: <b>{student.hr_teacher}</b>
+          Homeroom Teacher: <b>{student.hr_teacher}</b>
         </div>
       </div>
       <div class="studentDetails">
@@ -99,8 +99,13 @@ const App = props => {
           Joe
         </p>
       </div>
-      <div className="upperLeftMargin">{`${student.first_name.toUpperCase()} ${student.last_name.toUpperCase()} - GRADE ${student.grade_level_current.toUpperCase()}`}</div>
-      <div className="upperRightMargin">{`${student.first_name.toUpperCase()} ${student.last_name.toUpperCase()} - GRADE ${student.grade_level_current.toUpperCase()}`}</div>
+      <div className="upperLeftMargin">{`${student.first_name.toUpperCase()} ${student.last_name.toUpperCase()} - ${
+        student.grade_level_current == "0"
+          ? "KINDERGARTEN"
+          : "GRADE " + student.grade_level_current.toUpperCase()
+      }`}</div>
+      <div className="upperRightMargin">{`${student.first_name.toUpperCase()} ${student.last_name.toUpperCase()} - GRADE ${student.grade_level_current.toUpperCase() ||
+        "K"}`}</div>
       {student.departments.courses.map(subj => (
         <React.Fragment>
           <div class="subjectTitle">{subj.course_name}</div>
